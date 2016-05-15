@@ -37,7 +37,7 @@ var huineng;
          * @param  {[type]} _column_button [按钮操作]
          * @return {[type]}                [description]
          */
-        tables: function(_tag,_ajax,_columns,_column_button)
+        tables_init: function(_tag,_ajax,_columns,_column_button)
         {
             var tables_func = $(_tag).DataTable({
                 "deferRender":true,
@@ -63,6 +63,53 @@ var huineng;
                 }]
             });
             return tables_func;
+        },
+        /**
+         * ajax 再次加载 datatables
+         * @param  {[type]} table_obj [database对象]
+         * @return {[type]}           [description]
+         */
+        tables_reload: function(table_obj)
+        {
+            table_obj.ajax.reload(function ( msg ) {
+                $("[data-toggle='tooltip']").tooltip();
+            },false);
+        },
+        /**
+         * wangeEdit编辑器 
+         * @param  {[type]} upload_url [上传地址]
+         * @param  {[type]} tag        [对象或id]
+         */
+        wangeditor: function(upload_url,tag)
+        {
+            var editor = new wangEditor(tag);
+            editor.config.uploadImgUrl = upload_url;
+            editor.config.menus = [
+                'bold',
+                'underline',
+                'italic',
+                'strikethrough',
+                'eraser',
+                'forecolor',
+                '|',
+                'quote',
+                'fontfamily',
+                'fontsize',
+                'head',
+                'unorderlist',
+                'orderlist',
+                'alignleft',
+                'aligncenter',
+                'alignright',
+                'link',
+                'unlink',
+                'img',
+                'insertcode',
+                '|',
+                'undo',
+                'redo'
+            ];
+            editor.create();
         },
         /**
          * 删除一个列表里面的值
@@ -138,7 +185,6 @@ var huineng;
 
             return result;
         },
-
         /**
          * 获取form表单域值
          * @param  {[type]} $form form的jQuery对象
@@ -155,5 +201,3 @@ var huineng;
         }
     };
 }) (jQuery);
-
- 

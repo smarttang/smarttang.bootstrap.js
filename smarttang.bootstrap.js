@@ -10,7 +10,31 @@ var smarttang;
 var huineng;
 
 (function() {
-    smarttang = {   
+    smarttang = {
+        /**
+         * 私有的ajax(post)
+         * @param {[type]} postUrl  [请求链接]
+         * @param {[type]} ajaxData [ajax数据]
+         * @param {[type]} objFunc  [ajax请求成功后执行的function]
+         */
+        SmartAjax: function(postUrl,ajaxData,objFunc)
+        {
+            $.ajax({
+                type: 'POST',
+                url: postUrl,
+                async: false,  // 同步设置
+                data: ajaxData,
+                dataType: 'json',
+                error: function(msg){
+                    console.log('error:'+msg);
+                },
+                success:function(msg){
+                    if (msg['status'] == 1){
+                        objFunc();
+                    }
+                }
+            }); 
+        }, 
         /**
          * modal视窗
          * @param  {[type]} _title  [标题]
@@ -118,26 +142,13 @@ var huineng;
          * @param  {[type]} post_url [请求的地址]
          * @return {[type]}          [description]
          */
-        delete: function(id,title,post_url)
+        delete: function(id,title,postUrl)
         {
             var bool = false;
-            var info_id = id;
             if(confirm('您确定要删除该'+title+'么？')){
-                $.ajax({
-                    type: 'POST',
-                    url: post_url,
-                    async: false,  // 同步设置
-                    data: {'obj':'delete','id':info_id},
-                    dataType: 'json',
-                    error: function(msg){
-                        console.log('error:'+msg);
-                    },
-                    success:function(msg){
-                        if (msg['status'] == 1){
-                            bool = true;
-                        }
-                    }
-                }); 
+                smarttang.SmartAjax(postUrl,{'obj':'delete','id':id},function(){
+                    bool = true;
+                });
                 return bool;
             }
         }

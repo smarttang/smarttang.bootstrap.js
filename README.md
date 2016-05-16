@@ -51,6 +51,8 @@
 ##记录
 > * [2016.5.16] 增加 wangEditor 支持。
 > * [2016.5.16] 增加 datatables 支持（ajax初始化/ajax reload）
+> * [2016.5.17] 增加 SmartAjax 支持（定制化ajax请求）
+> * [2016.5.17] 增加 mergeData 支持（Object对象合并）
 > * 等待增加...
 
 ##说明

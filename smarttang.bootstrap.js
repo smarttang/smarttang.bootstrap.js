@@ -206,9 +206,21 @@ var huineng;
                 that = this,
                 queryStr = $form.serialize();
 
-            formData = Util.queryStr2Object(queryStr, true);
+            formData = huineng.queryStr2Object(queryStr, true);
 
             return formData;
+        },
+        /**
+         * 合并对象
+         * @param  {[type]} o1 [准备合并的对象1]
+         * @param  {[type]} o2 [准备合并的对象2]
+         * @return {[type]}    [description]
+         */
+        mergeData: function(o1,o2){
+           for(var key in o2){
+               o1[key]=o2[key]
+           }
+           return o1;
         }
     };
 }) (jQuery);

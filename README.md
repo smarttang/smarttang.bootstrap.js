@@ -66,5 +66,7 @@
 
 * [版权声明](./LICENSE) (MIT协议，可以随意修改但是最好留下作者名字表示尊重)
 * [作者邮箱](mailto:tangyucong@163.com) (有特别好的建议，直接发我)
+* [wangEditor](http://wangeditor.github.io/) (这是我用过最好的在线编辑器，虽然坑很多....)
+* [datatables](https://www.datatables.net/) (这是我最喜欢的插件，没有之一...)
 
 

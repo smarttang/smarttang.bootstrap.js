@@ -151,6 +151,29 @@ var huineng;
                 });
                 return bool;
             }
+        },        
+        /**
+         * 按钮特效（loading效果）
+         * --- 
+         * bootstrap v3 已经去除该效果，老版本才有
+         * 这里添加回来
+         * @param  {[type]} buttonTag    [按钮的TAG]
+         * @param  {[type]} staTus       [状态选择（open/close）]
+         * @param  {[type]} defaultTitle [初始状态的文字]
+         * @param  {[type]} LoadingTitle [运行状态的文字]
+         * @return {[type]}              [description]
+         */
+        button_status: function(buttonTag,staTus,defaultTitle,LoadingTitle)
+        {
+            if (staTus == 'open'){
+                buttonTag.addClass('disabled');
+                buttonTag.html(LoadingTitle);
+            }else if(staTus == 'close'){
+                buttonTag.removeClass('disabled');
+                // 还原成最初的html text
+                buttonTag.html(defaultTitle);
+            }
+
         }
     };
     huineng = {

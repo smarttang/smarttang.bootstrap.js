@@ -29,8 +29,8 @@ var huineng;
                     console.log('error:'+msg);
                 },
                 success:function(msg){
-                    if (msg['status'] == 1){
-                        objFunc();
+                    if (msg.status == 1){
+                        objFunc(msg.data);
                     }
                 }
             }); 
@@ -72,16 +72,19 @@ var huineng;
                     // 默认加载一些提示的功能，在按钮上
                     $("[data-toggle='tooltip']").tooltip(); 
                 },
-                columns:_columns,
+                columns: _columns,
                 columnDefs: [{
-                    targets: _columns.length - 1,
+                    targets: 3,
                     width: '5%',
                     render: function(data, type, row, meta) {
                         var _html = " \
-                            <i class='blue icon-zoom-in bigger-130' class='tooltip-show' data-toggle='tooltip' title='查看' onclick='#'></i> &nbsp; \
-                            <i class='green icon-wrench bigger-130' class='tooltip-show' data-toggle='tooltip' title='修改' onclick='#'></i> &nbsp; \
-                            <i class='red icon-trash bigger-130' class='tooltip-show' data-toggle='tooltip' title='删除' onclick='#'></i> &nbsp; \
+                            <i class='blue icon-zoom-in bigger-130' class='tooltip-show' data-toggle='tooltip' title='查看' onclick='read("+row.id+");'></i> &nbsp; \
+                            <i class='green icon-wrench bigger-130' class='tooltip-show' data-toggle='tooltip' title='修改' onclick='change("+row.id+");'></i> &nbsp; \
+                            <i class='red icon-trash bigger-130' class='tooltip-show' data-toggle='tooltip' title='删除' onclick='del("+row.id+");'></i> &nbsp; \
                         ";
+                        if (_html.length > 0){
+                            _html += _column_button;
+                        }
                         return _html;
                     } 
                 }]
@@ -134,24 +137,7 @@ var huineng;
                 'redo'
             ];
             editor.create();
-        },
-        /**
-         * 删除一个列表里面的值
-         * @param  {[type]} id       [准备删除的id]
-         * @param  {[type]} title    [栏目的名称]
-         * @param  {[type]} post_url [请求的地址]
-         * @return {[type]}          [description]
-         */
-        delete: function(id,title,postUrl)
-        {
-            var bool = false;
-            if(confirm('您确定要删除该'+title+'么？')){
-                smarttang.SmartAjax(postUrl,{'obj':'delete','id':id},function(){
-                    bool = true;
-                });
-                return bool;
-            }
-        },        
+        },    
         /**
          * 按钮特效（loading效果）
          * --- 

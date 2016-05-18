@@ -33,7 +33,6 @@
 		queryStr2Object: function:(...)
  -> smarttang
  	Object {}
- 		~~delete: function(...)
  		modal: function(...)
  		tables: function(...)
 ```
@@ -111,7 +110,7 @@ SmartAjax 使用.(有返回)
 ```
 	function read(_id)
 	{
-		var info_id = filterXSS(_id);
+		var info_id = filterXSS_id);
 		smarttang.SmartAjax(
 			OBJECT_DEPARTMENT,
 			{'obj':'read','id':info_id},

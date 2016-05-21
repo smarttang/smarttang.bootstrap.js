@@ -130,6 +130,7 @@ SmartAjax 使用.(有返回)
 > * [2016.5.17] 增加 mergeData 支持（Object对象合并）
 > * [2016.5.17] 增加 button_status 支持（还原 Bootstrap v3 版本之前的按钮loading特效）
 > * [2016.5.18] 删除 delete 功能，增加 SmartAjax 返回值功能，用于处理。
+> * [2016.5.21] 更新 tables_init 功能，修复按钮无法出现的 bug.
 > * 等待增加...
 
 ##说明

@@ -63,6 +63,25 @@ var huineng;
          */
         tables_init: function(_tag,_ajax,_columns,_column_button)
         {
+            var columnDefsValue;
+            var columnButton = [{
+                targets: _columns.length,
+                width: '5%',
+                render: function(data, type, row, meta) {
+                    var _html = " \
+                        <i class='blue icon-zoom-in bigger-130' class='tooltip-show' data-toggle='tooltip' title='查看' onclick='read("+row.id+");'></i> &nbsp; \
+                        <i class='green icon-wrench bigger-130' class='tooltip-show' data-toggle='tooltip' title='修改' onclick='change("+row.id+");'></i> &nbsp; \
+                        <i class='red icon-trash bigger-130' class='tooltip-show' data-toggle='tooltip' title='删除' onclick='del("+row.id+");'></i> &nbsp; \
+                    ";
+                    return _html;
+                } 
+            }];
+
+            if (_column_button ==''){
+                columnDefsValue = columnButton;
+            }else{
+                columnDefsValue = _column_button;
+            }
             var tables_func = $(_tag).DataTable({
                 "deferRender":true,
                 "bDestroy": true,
@@ -73,21 +92,7 @@ var huineng;
                     $("[data-toggle='tooltip']").tooltip(); 
                 },
                 columns: _columns,
-                columnDefs: [{
-                    targets: 3,
-                    width: '5%',
-                    render: function(data, type, row, meta) {
-                        var _html = " \
-                            <i class='blue icon-zoom-in bigger-130' class='tooltip-show' data-toggle='tooltip' title='查看' onclick='read("+row.id+");'></i> &nbsp; \
-                            <i class='green icon-wrench bigger-130' class='tooltip-show' data-toggle='tooltip' title='修改' onclick='change("+row.id+");'></i> &nbsp; \
-                            <i class='red icon-trash bigger-130' class='tooltip-show' data-toggle='tooltip' title='删除' onclick='del("+row.id+");'></i> &nbsp; \
-                        ";
-                        if (_html.length > 0){
-                            _html += _column_button;
-                        }
-                        return _html;
-                    } 
-                }]
+                columnDefs: columnDefsValue
             });
             return tables_func;
         },
